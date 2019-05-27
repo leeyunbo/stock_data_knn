@@ -81,11 +81,11 @@ def plot_cities(stock_datas,a,b,c,d): # 그래프 관련 함수-------- 이부�
 # 각각 161개와 230-161개 = 69 개, 학습데이터 161개와 테스트데이터 69개
 if __name__ == "__main__":
 
-    stock_data = pd.read_csv('stock_history.added.csv', encoding="ms949")
+    stock_data = pd.read_csv('stock_history_added.csv', encoding="ms949")
     stock_datas=list()
     predicted_ud_3ds=list()
-    data1 = stock_data['cv3d_diff_rate'] # 변수 변경 혹은 추가 가능,만약 추가하려면 리스트를 추가해야함
-    data2 = stock_data['diff_value_rate']
+    data1 = stock_data['diff_value_rate'] # 변수 변경 혹은 추가 가능,만약 추가하려면 리스트를 추가해야함
+    data2 = stock_data['cv3d_diff_rate']
     ud_3d = stock_data['ud_3d']
 
 
@@ -97,10 +97,10 @@ if __name__ == "__main__":
 
     # try several different values for k
     predicted_ud_3ds = list()
-    for i in range(0,161):
-        predicted_ud_3ds.append('Learning Data')
 
-    for k in [9]:
+    for k in [1,3,5,7,9,11,13]:
+        for i in range(0, 161):
+            predicted_ud_3ds.append('Learning Data')
         num_correct = 0
         other_datas = stock_datas[0:161]
         for diff_data, ud_3d in stock_datas[161:]:
@@ -110,13 +110,13 @@ if __name__ == "__main__":
                 num_correct += 1
             predicted_ud_3ds.append(predicted_ud_3d) # 예측되어 나온 ud_3d 값들을 가지는 리스트
 
-
+        stock_data[k] = pd.DataFrame(predicted_ud_3ds, columns=['predicted_ud_3ds'])
+        predicted_ud_3ds.clear()
         print(k, "neighbor[s]:", num_correct, "correct out of", len(stock_datas[161:]),  (num_correct/len(stock_datas[161:])) * 100,'%')
         # k 별로 정확도 계산 후 출력
     # create a scatter series for each language
-    stock_data['predicted'] = pd.DataFrame(predicted_ud_3ds,columns=['cv5d_diff_rate'])
-    stock_data.to_csv("stock_history.added.predicted.csv", encoding="ms949") # csv파일에 예측되어 나온 ud_3d 추가
-    plot_cities(stock_datas[0:161],450,4800,-40,60) # 학습 데이터에 대해서 분포를 보여줌
+    stock_data.to_csv("stock_history_k.csv", encoding="ms949") # csv파일에 예측되어 나온 ud_3d 추가
+    plot_cities(stock_datas[0:161],-20,20,-40,55) # 학습 데이터에 대해서 분포를 보여줌
 
 
 

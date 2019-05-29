@@ -98,7 +98,7 @@ if __name__ == "__main__":
     # try several different values for k
     predicted_ud_3ds = list()
 
-    for k in [1,3,5,7,9,11,13]:
+    for k in [1,3,5,7,9,11,13,15]:
         for i in range(0, 161):
             predicted_ud_3ds.append('Learning Data')
         num_correct = 0
@@ -115,6 +115,7 @@ if __name__ == "__main__":
         print(k, "neighbor[s]:", num_correct, "correct out of", len(stock_datas[161:]),  (num_correct/len(stock_datas[161:])) * 100,'%')
         # k 별로 정확도 계산 후 출력
     # create a scatter series for each language
+    del stock_data['Unnamed: 0']
     stock_data.to_csv("stock_history_k.csv", encoding="ms949") # csv파일에 예측되어 나온 ud_3d 추가
     plot_cities(stock_datas[0:161],-20,20,-40,55) # 학습 데이터에 대해서 분포를 보여줌
 

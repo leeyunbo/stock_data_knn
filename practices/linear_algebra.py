@@ -1,13 +1,10 @@
-# -*- coding: iso-8859-15 -*-
+
 
 import re, math, random # regexes, math functions, random numbers
 import matplotlib.pyplot as plt # pyplot
 from collections import defaultdict, Counter
 from functools import partial, reduce
 
-#
-# functions for working with vectors
-#
 
 def vector_add(v, w):
     """adds two vectors componentwise"""
@@ -74,17 +71,7 @@ def is_diagonal(i, j):
 identity_matrix = make_matrix(5, 5, is_diagonal)
 
 #          user 0  1  2  3  4  5  6  7  8  9
-#
-friendships = [[0, 1, 1, 0, 0, 0, 0, 0, 0, 0], # user 0
-               [1, 0, 1, 1, 0, 0, 0, 0, 0, 0], # user 1
-               [1, 1, 0, 1, 0, 0, 0, 0, 0, 0], # user 2
-               [0, 1, 1, 0, 1, 0, 0, 0, 0, 0], # user 3
-               [0, 0, 0, 1, 0, 1, 0, 0, 0, 0], # user 4
-               [0, 0, 0, 0, 1, 0, 1, 1, 0, 0], # user 5
-               [0, 0, 0, 0, 0, 1, 0, 0, 1, 0], # user 6
-               [0, 0, 0, 0, 0, 1, 0, 0, 1, 0], # user 7
-               [0, 0, 0, 0, 0, 0, 1, 1, 0, 1], # user 8
-               [0, 0, 0, 0, 0, 0, 0, 0, 1, 0]] # user 9
+
 
 #####
 # DELETE DOWN
